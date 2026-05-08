@@ -262,17 +262,49 @@
     // Basic AI Personality Rules
     function getBotResponse(text) {
         const lowerText = text.toLowerCase();
-        if (lowerText.includes('giá') || lowerText.includes('báo giá')) {
-            return "Để nhận báo giá chính xác nhất, bạn có thể để lại thông tin ở biểu mẫu phía trên trang web. Phúc Hưng cam kết mức giá chiết khấu tốt nhất cho doanh nghiệp của bạn! 💼";
-        } else if (lowerText.includes('giao hàng') || lowerText.includes('vận chuyển') || lowerText.includes('ship')) {
-            return "Chúng tôi hỗ trợ giao hàng tận nơi nhanh chóng trong vòng 2h đối với nội thành. Bạn hoàn toàn yên tâm, thiếu 1 cây bút cũng giao nhé! 🚚";
-        } else if (lowerText.includes('sản phẩm') || lowerText.includes('bút') || lowerText.includes('giấy') || lowerText.includes('mực')) {
-            return "Phúc Hưng cung cấp đa dạng sản phẩm: Giấy in (Double A, IK Plus...), các loại bút viết, mực in chính hãng, thiết bị văn phòng... Tất cả đều đảm bảo chất lượng. Bạn đang cần tìm sản phẩm cụ thể nào?";
-        } else if (lowerText.includes('chào') || lowerText.includes('hi ') || lowerText.includes('hello')) {
+        
+        // 1. Chào hỏi
+        if (lowerText.includes('chào') || lowerText.includes('hi ') || lowerText.includes('hello')) {
             return "Dạ chào bạn! Chúc bạn một ngày làm việc hiệu quả. Tôi có thể giúp bạn tìm hiểu về sản phẩm hay dịch vụ nào của Phúc Hưng?";
-        } else if (lowerText.includes('cảm ơn') || lowerText.includes('tks') || lowerText.includes('thank')) {
+        } 
+        // 2. Báo giá
+        else if (lowerText.includes('giá') || lowerText.includes('báo giá')) {
+            return "Để nhận báo giá chính xác nhất, bạn có thể để lại thông tin ở biểu mẫu phía trên trang web. Phúc Hưng cam kết mức giá chiết khấu tốt nhất cho doanh nghiệp của bạn! 💼";
+        } 
+        // 3. Giao hàng
+        else if (lowerText.includes('giao hàng') || lowerText.includes('vận chuyển') || lowerText.includes('ship') || lowerText.includes('bao lâu')) {
+            return "Chúng tôi hỗ trợ giao hàng tận nơi nhanh chóng trong vòng 2h đối với nội thành. FREESHIP cho đơn hàng từ 500k. Bạn hoàn toàn yên tâm, thiếu 1 cây bút cũng giao nhé! 🚚";
+        } 
+        // 4. Sản phẩm
+        else if (lowerText.includes('sản phẩm') || lowerText.includes('bút') || lowerText.includes('giấy') || lowerText.includes('mực')) {
+            return "Phúc Hưng cung cấp đa dạng sản phẩm: Giấy in (Double A, IK Plus...), bút viết, mực in chính hãng, bìa hồ sơ, thiết bị văn phòng... Tất cả đều đảm bảo chất lượng. Bạn đang cần tìm sản phẩm cụ thể nào?";
+        } 
+        // 5. Thanh toán / Công nợ
+        else if (lowerText.includes('thanh toán') || lowerText.includes('công nợ') || lowerText.includes('trả sau')) {
+            return "Phúc Hưng hỗ trợ hình thức thanh toán linh hoạt cho doanh nghiệp. Chúng tôi có chính sách CÔNG NỢ lên đến 30 ngày cho các khách hàng ký hợp đồng dài hạn ạ. 💳";
+        }
+        // 6. Hóa đơn VAT
+        else if (lowerText.includes('hóa đơn') || lowerText.includes('vat') || lowerText.includes('xuất hóa đơn')) {
+            return "Dạ chắc chắn rồi! Phúc Hưng xuất hóa đơn VAT đầy đủ, hợp lệ và gửi hóa đơn điện tử ngay trong ngày cho tất cả các đơn hàng doanh nghiệp.";
+        }
+        // 7. Đổi trả / Bảo hành
+        else if (lowerText.includes('đổi trả') || lowerText.includes('lỗi') || lowerText.includes('bảo hành')) {
+            return "Nếu sản phẩm có lỗi từ nhà sản xuất hoặc không đúng yêu cầu, Phúc Hưng hỗ trợ đổi trả MIỄN PHÍ tận nơi trong vòng 7 ngày làm việc ạ. 🔄";
+        }
+        // 8. Địa chỉ / Liên hệ
+        else if (lowerText.includes('địa chỉ') || lowerText.includes('ở đâu') || lowerText.includes('cửa hàng') || lowerText.includes('địa điểm')) {
+            return "Văn phòng chính của Phúc Hưng nằm tại trung tâm thành phố. Tuy nhiên, chúng tôi chủ yếu phục vụ giao hàng tận nơi cho doanh nghiệp. Bạn chỉ cần lên đơn, mọi thứ cứ để Phúc Hưng lo! 🏢";
+        }
+        // 9. Chiết khấu / Khuyến mãi
+        else if (lowerText.includes('chiết khấu') || lowerText.includes('khuyến mãi') || lowerText.includes('giảm giá')) {
+            return "Với khách hàng doanh nghiệp mua số lượng lớn hoặc ký hợp đồng nguyên tắc, Phúc Hưng có mức chiết khấu cực kỳ hấp dẫn từ 5% - 15%. Bạn để lại số điện thoại để chuyên viên tư vấn rõ hơn nhé! 🎁";
+        }
+        // 10. Cảm ơn
+        else if (lowerText.includes('cảm ơn') || lowerText.includes('tks') || lowerText.includes('thank')) {
             return "Không có chi ạ! Nếu cần hỗ trợ thêm gì, bạn cứ nhắn tin cho tôi nhé. Rất hân hạnh được phục vụ!";
-        } else {
+        } 
+        // Mặc định
+        else {
             return "Dạ tôi là trợ lý ảo nên đang trong quá trình học hỏi thêm. Bạn vui lòng để lại số điện thoại hoặc gọi Hotline để nhân viên tư vấn trực tiếp hỗ trợ bạn chi tiết hơn nhé! 😊";
         }
     }
